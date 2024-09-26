@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Add a new tree to the map</h2>
+        <p><a href="/logout">Logout</a></p>
+        <p><a href="/dashboard">Dashboard</a></p>
+        {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        <form action="/edit/{{tree.id}}" method="post">
+            <label for="species">Species:</label>
+            <input type="text" name="species" value="{{tree.species}}">
+            <label for="location">Location:</label>
+            <input type="text" name="location" value="{{tree.location}}">
+            <label for="date">Date Found:</label>
+            <input type="date" name="date" value="{{tree.date}}">
+            <label  for="zip">Zip Code:</label>
+            <input type="number" name="zip" value="{{tree.zip}}">
+            <label for="notes">Notes:</label>
+            <input type="text" name="notes" value="{{tree.notes}}">
+            <button action="/edit/{{tree.id}}">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

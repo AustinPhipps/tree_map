@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+    <h1>Dashboard</h1>
+    <p>Find, share, and learn more about real trees!</p>
+    <h1>Welcome, {{session['first_name']}}!</h1>
+    <p><a href="/logout">Logout</a></p>
+
+    <h3><a href="/tree_form">Add Tree</a></h3>
+    <h1>Added Trees:</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Species:</td>
+                <td>Actions:</td>
+                <td>View:</td>
+                <td>Mapped by:</td>
+                <td>Zip code:</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tree in all_trees %}
+                <tr>
+                    <td>{{tree.species}}</td>
+                    {% if tree.users_id == session['users_id'] %}
+                        <td><a href="/edit/{{tree.id}}">Edit</a> <a href="/delete/{{tree.id}}">Delete</a></td>
+                    {% endif %}
+                    <td><a href="/view/{{tree.id}}">More</a></td>
+                    <td>{{tree.creator.first_name}} {{tree.creator.last_name}}</td>
+                    <td>{{tree.zip}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

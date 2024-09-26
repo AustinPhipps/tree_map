@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tree Mapper</h1>
+            <h3>Find, share, and learn about real trees!</h3>
+        </div>
+        <div class="links">
+            <h2>Welcome, {{session['first_name']}}!</h2>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="body">
+            <h2>{{tree.species}}</h2>
+            <p>Added by {{user.first_name}} {{user.last_name}}</p>
+            <p>{{tree.location}}</p>
+            <p>When: {{tree.date}}</p>
+            <p>Notes: {{tree.notes}}</p>
+        </div>
+    </div>
+
+</body>
+</html>
